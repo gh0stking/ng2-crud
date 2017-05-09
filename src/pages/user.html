@@ -1,0 +1,65 @@
+<div style="width:100%;text-align:center;">
+    <h1>Angular CRUD操作</h1>
+</div>
+<div style="padding:5px;" class="text-right">
+    <button type="button" class="btn btn-primary" (click)="addUser()">添　加</button>
+    <button type="button" class="btn btn-primary" (click)="getUsers()">刷　新</button>
+</div>
+<hr>
+<table class="table table-hover text-center">
+    <thead>
+        <tr text-center>
+            <th width="20%" class="text-center">编号</th>
+            <th width="20%" class="text-center">姓名</th>
+            <th width="20%" class="text-center">性别</th>
+            <th width="20%" class="text-center">生日</th>
+            <th width="20%" class="text-center">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor='let u of users' [class.warning]='u.sex==1' [class.danger]='u.sex==0'>
+            <td>{{u.userId}}</td>
+            <td>{{u.userName}}</td>
+            <td>{{u.sex}}</td>
+            <td>{{u.birthday|date:'yyyy-MM-dd'}}</td>
+            <td>
+                <button type="button" class="btn btn-warning" (click)="modifyUser(u);currentUser=u">修改</button>
+                <button type="button" class="btn btn-danger" (click)="delUser(u);currentUser=u">删除</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+<div bsModal #addUserModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">添加用户</h4>
+                <button type="button" class="close pull-right" (click)="addUserModal.hide()" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <user-add [user]='currentUser' (onClose)='closeAddUserModal($event)'></user-add>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div bsModal #modifyUserModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title pull-left">修改用户信息</h4>
+                <button type="button" class="close pull-right" (click)="closeModifyUserModal($event)" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+            </div>
+            <div class="modal-body">
+                <user-modify [user]='currentUser' (onClose)='closeModifyUserModal($event)'></user-modify>
+            </div>
+        </div>
+    </div>
+</div>
