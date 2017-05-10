@@ -1,5 +1,5 @@
 <div style="width:100%;text-align:center;">
-    <h1>Angular CRUD操作</h1>
+    <h1>Angular2 CRUD操作</h1>
 </div>
 <div style="padding:5px;" class="text-right">
     <button type="button" class="btn btn-primary" (click)="addUser()">添　加</button>
@@ -9,7 +9,7 @@
 <table class="table table-hover text-center">
     <thead>
         <tr text-center>
-            <th width="20%" class="text-center">编号</th>
+            <th width="20%" class="text-center">用户名</th>
             <th width="20%" class="text-center">姓名</th>
             <th width="20%" class="text-center">性别</th>
             <th width="20%" class="text-center">生日</th>
@@ -17,7 +17,7 @@
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor='let u of users' [class.warning]='u.sex==1' [class.danger]='u.sex==0'>
+        <tr *ngFor='let u of users'>
             <td>{{u.userId}}</td>
             <td>{{u.userName}}</td>
             <td>{{u.sex}}</td>

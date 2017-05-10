@@ -3,6 +3,7 @@ import { Observable } from 'rxjs/Observable';
 import 'rxjs/Rx';
 
 import { UserInfo } from '../models/user';
+import { Dic } from '../models/dic';
 
 @Injectable()
 export class UserService {
@@ -45,5 +46,14 @@ export class UserService {
 
     exist(userId: string): boolean {
         return UserService.USERS.find(a => a.userId == userId) == null;
+    }
+
+    getDicSex(): Observable<Dic[]> {
+        let dicSex: Array<Dic> = [
+            { id: "0", name: "男" },
+            { id: "0", name: "女" }
+        ];
+
+        return Observable.of(dicSex);
     }
 }

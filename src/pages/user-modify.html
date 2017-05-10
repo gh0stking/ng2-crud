@@ -1,20 +1,28 @@
 <div class="form-horizontal" *ngIf='user'>
     <div class="form-group">
-        <label for="" class="col-lg-2 control-label">用户编号：</label>
-        <div class="col-lg-10">
-            <input type="text" class="form-control" [(ngModel)]='user.UserID'>
-        </div>
-    </div>
-    <div class="form-group">
         <label for="" class="col-lg-2 control-label">用户名：</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" [(ngModel)]='user.UserName'>
+            <input type="text" class="form-control" [(ngModel)]='user.userId'>
         </div>
     </div>
     <div class="form-group">
         <label for="" class="col-lg-2 control-label">姓名：</label>
         <div class="col-lg-10">
-            <input type="text" class="form-control" [(ngModel)]='user.Name'>
+            <input type="text" class="form-control" [(ngModel)]='user.userName'>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-lg-2 control-label">性别：</label>
+        <div class="col-lg-10">
+            <select [(ngModel)]="user.sex" class="form-control">
+                <option *ngFor='let t of dicSex' value="{{t.id}}">{{t.name}}</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="" class="col-lg-2 control-label">生日：</label>
+        <div class="col-lg-10">
+            <input type="date" class="form-control" [(ngModel)]='user.birthday'>
         </div>
     </div>
 </div>

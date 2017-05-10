@@ -1,16 +1,22 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 
 import { UserInfo } from '../models/user';
+import { Dic } from '../models/dic';
 import { UserService } from '../services/user.service';
 
 @Component({
     selector: 'user-modify',
     templateUrl: './user-modify.html'
 })
-export class UserModifyPage {
+export class UserModifyPage implements OnInit {
+    dicSex: Array<Dic>;
     @Input() user: UserInfo;
     @Output() onClose: EventEmitter<any> = new EventEmitter<any>();
     constructor(private userService: UserService) { }
+
+    ngOnInit(): void {
+        this.getDicSex();
+    }
 
     modifyuser(): void {
         if (this.user) {
@@ -21,5 +27,11 @@ export class UserModifyPage {
                 }
             });
         }
+    }
+
+    getDicSex(): void {
+        this.userService.getDicSex().subscribe(res => {
+            this.dicSex = res;
+        });
     }
 }
